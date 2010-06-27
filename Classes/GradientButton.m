@@ -26,6 +26,13 @@
 #pragma mark -
 - (CGGradientRef)normalGradient
 {
+    // csm -- this caching is wrong, if you change the color properties.
+    if (normalGradient != NULL)
+    {
+        CGGradientRelease(normalGradient);
+        normalGradient = NULL;
+    }
+    
     if (normalGradient == NULL)
     {
         int locCount = [normalGradientLocations count];
@@ -44,7 +51,12 @@
 }
 - (CGGradientRef)highlightGradient
 {
-    
+    // csm -- here too.
+    if (highlightGradient != NULL)
+    {
+        CGGradientRelease(highlightGradient);
+        highlightGradient = NULL;
+    }
     if (highlightGradient == NULL)
     {
         CGFloat locations[[highlightGradientLocations count]];
@@ -133,7 +145,7 @@
                                     [NSNumber numberWithFloat:0.418f],
                                     [NSNumber numberWithFloat:0.346],
                                     nil];
-    
+        
     NSMutableArray *colors2 = [NSMutableArray arrayWithCapacity:5];
     color = [UIColor colorWithRed:0.467 green:0.009 blue:0.005 alpha:1.0];
     [colors2 addObject:(id)[color CGColor]];
@@ -144,7 +156,7 @@
     color = [UIColor colorWithRed:0.5 green:0.153 blue:0.152 alpha:1.0];
     [colors2 addObject:(id)[color CGColor]];
     color = [UIColor colorWithRed:0.388 green:0.004 blue:0.0 alpha:1.0];
-    [colors addObject:(id)[color CGColor]];
+    [colors2 addObject:(id)[color CGColor]];
     
     self.highlightGradientColors = colors;
     self.highlightGradientLocations = [NSArray arrayWithObjects:
@@ -387,7 +399,7 @@
     color = [UIColor colorWithRed:0.153 green:0.5 blue:0.152 alpha:1.0];
     [colors2 addObject:(id)[color CGColor]];
     color = [UIColor colorWithRed:0.004 green:0.388 blue:0.0 alpha:1.0];
-    [colors addObject:(id)[color CGColor]];
+    [colors2 addObject:(id)[color CGColor]];
 	
     self.highlightGradientColors = colors;
     self.highlightGradientLocations = [NSMutableArray arrayWithObjects:
