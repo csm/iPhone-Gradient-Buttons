@@ -16,23 +16,85 @@
 #pragma mark -
 
 @implementation GradientButton
-@synthesize normalGradientColors;
-@synthesize normalGradientLocations;
-@synthesize highlightGradientColors;
 @synthesize highlightGradientLocations;
 @synthesize cornerRadius;
 @synthesize strokeWeight, strokeColor;
-@synthesize normalGradient, highlightGradient;
-#pragma mark -
-- (CGGradientRef)normalGradient
+
+- (NSArray *) normalGradientColors
 {
-    // csm -- this caching is wrong, if you change the color properties.
+    return normalGradientColors;
+}
+
+- (void) setNormalGradientColors: (NSArray *) array
+{
     if (normalGradient != NULL)
     {
         CGGradientRelease(normalGradient);
         normalGradient = NULL;
     }
     
+    if (normalGradientColors != nil)
+        [normalGradientColors release];
+    normalGradientColors = [array retain];
+}
+
+- (NSArray *) normalGradientLocations
+{
+    return normalGradientLocations;
+}
+
+- (void) setNormalGradientLocations: (NSArray *) array
+{
+    if (normalGradient != NULL)
+    {
+        CGGradientRelease(normalGradient);
+        normalGradient = NULL;
+    }
+    
+    if (normalGradientLocations != nil)
+        [normalGradientLocations release];
+    normalGradientLocations = [array retain];
+}
+
+- (NSArray *) highlightGradientColors
+{
+    return highlightGradientColors;
+}
+
+- (void) setHighlightGradientColors: (NSArray *) array
+{
+    if (highlightGradient != NULL)
+    {
+        CGGradientRelease(highlightGradient);
+        highlightGradient = NULL;
+    }
+    
+    if (highlightGradientColors != nil)
+        [highlightGradientColors release];
+    highlightGradientColors = [array retain];
+}
+
+- (NSArray *) highlightGradientLocations
+{
+    return highlightGradientLocations;
+}
+
+- (void) setHighlightGradientLocations: (NSArray *) array
+{
+    if (highlightGradient != NULL)
+    {
+        CGGradientRelease(highlightGradient);
+        highlightGradient = NULL;
+    }
+    
+    if (highlightGradientLocations != nil)
+        [highlightGradientLocations release];
+    highlightGradientLocations = [array retain];
+}
+
+#pragma mark -
+- (CGGradientRef)normalGradient
+{
     if (normalGradient == NULL)
     {
         int locCount = [normalGradientLocations count];
@@ -51,12 +113,6 @@
 }
 - (CGGradientRef)highlightGradient
 {
-    // csm -- here too.
-    if (highlightGradient != NULL)
-    {
-        CGGradientRelease(highlightGradient);
-        highlightGradient = NULL;
-    }
     if (highlightGradient == NULL)
     {
         CGFloat locations[[highlightGradientLocations count]];
