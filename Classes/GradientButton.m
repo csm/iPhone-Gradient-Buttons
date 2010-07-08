@@ -16,7 +16,6 @@
 #pragma mark -
 
 @implementation GradientButton
-@synthesize highlightGradientLocations;
 @synthesize cornerRadius;
 @synthesize strokeWeight, strokeColor;
 
@@ -457,7 +456,7 @@
     color = [UIColor colorWithRed:0.004 green:0.388 blue:0.0 alpha:1.0];
     [colors2 addObject:(id)[color CGColor]];
 	
-    self.highlightGradientColors = colors;
+    self.highlightGradientColors = colors2;
     self.highlightGradientLocations = [NSMutableArray arrayWithObjects:
                                        [NSNumber numberWithFloat:0.0f],
                                        [NSNumber numberWithFloat:1.0f],
@@ -469,6 +468,37 @@
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
 }
+
+// Exactly like useGreenConfirmStyle, but with sharper corners.
+- (void) useGreenBuyButtonStyle
+{
+    [self useGreenConfirmStyle];
+    self.cornerRadius = 3.5f;
+    [self setNeedsDisplay];
+}
+
+- (void) useBlueBuyButtonStyle
+{
+    NSMutableArray *colors = [NSMutableArray arrayWithCapacity: 2];
+    UIColor *color = [UIColor colorWithRed:0.325 green:0.382 blue:0.509 alpha:1.000];
+    [colors addObject: (id) [color CGColor]];
+    color = [UIColor colorWithRed:0.165 green:0.275 blue:0.533 alpha:1.000];
+    [colors addObject: (id) [color CGColor]];
+    self.normalGradientColors = colors;
+    self.normalGradientLocations = [NSArray arrayWithObjects:
+                                    [NSNumber numberWithFloat: 0.0f],
+                                    [NSNumber numberWithFloat: 1.0f],
+                                    nil];
+    self.highlightGradientColors = colors;
+    self.highlightGradientLocations = [NSArray arrayWithObjects:
+                                       [NSNumber numberWithFloat: 0.0f],
+                                       [NSNumber numberWithFloat: 1.0f],
+                                       nil];
+    self.cornerRadius = 3.5f;
+    [self setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+    [self setNeedsDisplay];
+}
+
 #pragma mark -
 - (void)drawRect:(CGRect)rect 
 {

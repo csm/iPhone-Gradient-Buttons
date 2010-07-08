@@ -48,5 +48,7 @@
 - (void)useBlackActionSheetStyle;
 - (void)useSimpleOrangeStyle;
 - (void)useGreenConfirmStyle;
+- (void)useGreenBuyButtonStyle;
+- (void)useBlueBuyButtonStyle;
 
 @end
