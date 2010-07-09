@@ -50,5 +50,6 @@
 - (void)useGreenConfirmStyle;
 - (void)useGreenBuyButtonStyle;
 - (void)useBlueBuyButtonStyle;
+- (void)useDisabledBuyButtonStyle;
 
 @end

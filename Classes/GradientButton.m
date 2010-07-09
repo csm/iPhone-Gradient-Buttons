@@ -472,8 +472,31 @@
 // Exactly like useGreenConfirmStyle, but with sharper corners.
 - (void) useGreenBuyButtonStyle
 {
-    [self useGreenConfirmStyle];
+    NSMutableArray *colors = [NSMutableArray arrayWithCapacity: 2];
+    UIColor *color = [UIColor colorWithRed:0.521 green:0.658 blue:0.428 alpha:1.000];
+    [colors addObject: (id) [color CGColor]];
+    color = [UIColor colorWithRed:0.410 green:0.614 blue:0.248 alpha:1.000];
+    [colors addObject: (id) [color CGColor]];
+    self.normalGradientColors = colors;
+    self.normalGradientLocations = [NSArray arrayWithObjects:
+                                    [NSNumber numberWithFloat: 1.0f],
+                                    [NSNumber numberWithFloat: 0.0f],
+                                    nil];
+    self.highlightGradientColors = colors;
+    self.highlightGradientLocations = [NSArray arrayWithObjects:
+                                       [NSNumber numberWithFloat: 1.0f],
+                                       [NSNumber numberWithFloat: 0.0f],
+                                       nil];
+    [self setTitleColor: [UIColor whiteColor]
+               forState: UIControlStateNormal];
+    [self setTitleShadowColor: [UIColor colorWithRed:0.236 green:0.236 blue:0.236 alpha:1.000]
+                     forState: UIControlStateNormal];
+    [[self titleLabel] setShadowOffset: CGSizeMake(0.f, -1.f)];
     self.cornerRadius = 3.5f;
+    
+    // FIXME these buttons appear with a "shadow" instead of a stroke. Find out
+    // how to replicate that?
+    self.strokeColor = [UIColor colorWithRed:0.183 green:0.185 blue:0.185 alpha:1.000];
     [self setNeedsDisplay];
 }
 
@@ -486,16 +509,47 @@
     [colors addObject: (id) [color CGColor]];
     self.normalGradientColors = colors;
     self.normalGradientLocations = [NSArray arrayWithObjects:
-                                    [NSNumber numberWithFloat: 0.0f],
                                     [NSNumber numberWithFloat: 1.0f],
+                                    [NSNumber numberWithFloat: 0.0f],
                                     nil];
     self.highlightGradientColors = colors;
     self.highlightGradientLocations = [NSArray arrayWithObjects:
-                                       [NSNumber numberWithFloat: 0.0f],
                                        [NSNumber numberWithFloat: 1.0f],
+                                       [NSNumber numberWithFloat: 0.0f],
                                        nil];
     self.cornerRadius = 3.5f;
     [self setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+    [self setTitleShadowColor: [UIColor colorWithRed:0.236 green:0.236 blue:0.236 alpha:1.000]
+                     forState: UIControlStateNormal];
+    [[self titleLabel] setShadowOffset: CGSizeMake(0.f, -1.f)];
+    self.strokeColor = [UIColor colorWithRed:0.183 green:0.185 blue:0.185 alpha:1.000];
+    [self setNeedsDisplay];
+}
+
+- (void) useDisabledBuyButtonStyle
+{
+    NSMutableArray *colors = [NSMutableArray arrayWithCapacity: 2];
+    UIColor *color = [UIColor colorWithRed:0.582 green:0.590 blue:0.598 alpha:1.000];
+    [colors addObject: (id) [color CGColor]];
+    color = [UIColor colorWithRed:0.670 green:0.678 blue:0.682 alpha:1.000];
+    [colors addObject: (id) [color CGColor]];
+    self.normalGradientColors = colors;
+    self.normalGradientLocations = [NSArray arrayWithObjects:
+                                    [NSNumber numberWithFloat: 1.0f],
+                                    [NSNumber numberWithFloat: 0.0f],
+                                    nil];
+    self.highlightGradientColors = colors;
+    self.highlightGradientLocations = [NSArray arrayWithObjects:
+                                       [NSNumber numberWithFloat: 1.0f],
+                                       [NSNumber numberWithFloat: 0.0f],
+                                       nil];
+    self.cornerRadius = 3.5f;
+    [self setTitleColor: [UIColor colorWithRed:0.531 green:0.538 blue:0.542 alpha:1.000]
+               forState: UIControlStateNormal];
+    [self setTitleShadowColor: [UIColor colorWithRed:0.667 green:0.678 blue:0.686 alpha:1.000]
+                     forState: UIControlStateNormal];
+    [[self titleLabel] setShadowOffset: CGSizeMake(0.f, 1.f)];
+    self.strokeColor = [UIColor colorWithRed:0.612 green:0.616 blue:0.624 alpha:1.000];
     [self setNeedsDisplay];
 }
 
